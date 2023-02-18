@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import styled from "styled-components";
+const BaseButton = styled.button`
+  border: none;
+  outline: none;
+  background: ${(props) => (props.state ? "white" : "black")};
+  color: ${(props) => (props.state ? "black" : "white")};
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 0.5rem 1rem;
+`;
 
-function App() {
+export default function App() {
+  const [white, setWhite] = useState(false);
+
+  const changeColor = () => {
+    white ? setWhite(false) : setWhite(true);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Styles Component</h2>
+      <BaseButton onClick={changeColor} state={white}>
+        I'm a Button
+      </BaseButton>
     </div>
   );
 }
-
-export default App;
